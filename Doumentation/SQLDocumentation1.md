@@ -56,4 +56,67 @@ ORDER BY Product;
 | Monitor | 0          | 0          |
 | Phone   | 1000       | 1800       |
 | Tablet  | 1200       | 1500       |
+***
+***
+## LISTAGG
+Ah, "LISTAGG!" It's a fantastic Oracle SQL function for aggregating strings from multiple rows into a single string, often separated by a specified delimiter. Think of it as the opposite of splitting a string; it combines them. This is incredibly useful for generating comma-separated lists, creating concatenated values for reporting, or preparing data for other applications.
+### Core Functionality:
+The LISTAGG function takes two main arguments:
+1. measure_expr: This is the column or expression whose values you want to concatenate. It must resolve to a string data type (or a data type that can be implicitly converted to a string).
+2. delimiter: This is the string that will separate the concatenated values. It's a single-quoted string.
+
+| department_id | employee_name |
+|---------------|----------------|
+| 10            | John Doe       |
+| 20            | Jane Smith     |
+| 10            | Peter Jones    |
+| 20            | Alice Brown    |
+| 10            | Bob Williams   |
+#### We want to get a list of employee names for each department, separated by commas.
+```sql
+SELECT
+    department_id,
+    LISTAGG(employee_name, ', ') WITHIN GROUP (ORDER BY employee_name) AS employee_list
+FROM
+    employees
+GROUP BY
+    department_id;
+```
+#### Output:
+| department_id | employee_list                          |
+|---------------|----------------------------------------|
+| 10            | Bob Williams, John Doe, Peter Jones    |
+| 20            | Alice Brown, Jane Smith                |
+
+### Concatenating Products Ordered by Customer
+
+| customer_id | order_id | product_name |
+|-------------|----------|--------------|
+| 1           | 101      | Laptop       |
+| 2           | 102      | Tablet       |
+| 1           | 103      | Mouse        |
+| 2           | 104      | Keyboard     |
+| 1           | 105      | Monitor      |
+
+#### We want to get a list of products ordered by each customer.
+```sql
+SELECT
+    customer_id,
+    LISTAGG(product_name, '; ') WITHIN GROUP (ORDER BY order_id) AS ordered_products
+FROM
+    orders
+GROUP BY
+    customer_id;
+```
+#### Output:
+| customer_id | ordered_products         |
+|-------------|--------------------------|
+| 1           | Laptop; Mouse; Monitor   |
+| 2           | Tablet; Keyboard         |
+
+
+
+
+
+
 
