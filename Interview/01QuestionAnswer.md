@@ -29,6 +29,7 @@ DDL: Data Defination Language
 - Define the structure of the database by **creating, altering, droping, truncate, rename**.
 - Don't deal with the actual data but just with the database's structure.
 - Setting up and organizing the structure
+
 DML: Data Manipulation Language
 - Working with the actual data by **insert, update, delete**.
 - Keep the data into the table upto date.
