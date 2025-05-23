@@ -40,9 +40,11 @@ Delete:
 - Removing a specific data from a table based on certain **conditions**.
 - It let me choose what I want to delete from the table.
 - We can roll back or undo the deletion in most cases.
+
 Truncate:
 - It clears out all the data from the table and just leave the empty table.
 - It's fast but doesn't allow to roll back.
+
 Drop:
 - Remove the table itself from the database.
 - Drop is permanent and can't be undone.
