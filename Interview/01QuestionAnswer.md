@@ -55,13 +55,14 @@ Group By:
 - It is tipically used with **aggregate function** like **Sum, Avg, Count**.
 - It can get a summarize view or each satisfied condition.
 - Grouping the data in a meaningful summary
+
 Order By:
 - Sorting rows in a particular order
 - We sorting the entire table based on one or more columns.
 - Arrange data in a order for view.
 ```sql
-SELECT first_name, age
-FROM Customers order by age desc;
+SELECT first_name, age FROM Customers order by age desc;
+
 select item, avg(amount) from orders group by item;
 ```
 
@@ -69,6 +70,7 @@ select item, avg(amount) from orders group by item;
 Where:
 - Filtering before grouping
 - Filter individual rows based on specific conditions like age or name
+
 Having:
 - filtering after grouping
 - Use having when we want to filter groups created by the Group By clause based on Aggregate Results, Like counts and sums.
